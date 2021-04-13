@@ -1,3 +1,4 @@
+import Statistic from './Statistic';
 export default function Statics(props) {
 	const {} = props;
 	return (
@@ -7,12 +8,20 @@ export default function Statics(props) {
 				<p>No feedback given</p>
 			) : (
 				<div>
-					<p>good {props.good}</p>
-					<p>neutral {props.neutral}</p>
-					<p>bad {props.bad}</p>
-					<p>all {props.good + props.neutral + props.bad}</p>
-					<p>average {props.average / (props.good + props.neutral + props.bad)}</p>
-					<p>positive {props.good / (props.good + props.neutral + props.bad) * 100}%</p>
+					<Statistic text="good" value={props.good} signo="" />
+					<Statistic text="neutral" value={props.neutral} signo="" />
+					<Statistic text="bad" value={props.bad} signo="" />
+					<Statistic text="all" value={props.good + props.neutral + props.bad} signo="" />
+					<Statistic
+						text="average"
+						value={props.average / (props.good + props.neutral + props.bad)}
+						signo=""
+					/>
+					<Statistic
+						text="positive"
+						value={props.good / (props.good + props.neutral + props.bad) * 100}
+						signo="%"
+					/>
 				</div>
 			)}
 		</div>
