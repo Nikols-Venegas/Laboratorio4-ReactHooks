@@ -1,11 +1,12 @@
 import Statistic from './Statistic';
+import '../index.css';
 export default function Statics(props) {
 	const {} = props;
 	return (
 		<div>
-			<h2>statistics</h2>
+			<h2 className="estadisticas">statistics</h2>
 			{props.good + props.bad + props.neutral == 0 ? (
-				<p>No feedback given</p>
+				<p className="resultado">No feedback given</p>
 			) : (
 				<div>
 					<Statistic text="good" value={props.good} signo="" />

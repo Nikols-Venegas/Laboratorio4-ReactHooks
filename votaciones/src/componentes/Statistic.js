@@ -1,7 +1,8 @@
+import '../index.css';
 export default function Statistic(props) {
 	const {} = props;
 	return (
-		<p>
+		<p className="resultado">
 			{props.text} {props.value}
 			{props.signo}
 		</p>
