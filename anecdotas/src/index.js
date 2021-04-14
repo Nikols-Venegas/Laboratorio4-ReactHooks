@@ -3,8 +3,34 @@ import ReactDOM from 'react-dom';
 
 const App = props => {
 	const [ selected, setSelected ] = useState(0);
+	const [ votos, setVoto ] = useState([ 0 ]);
+	const [ cont, setCont ] = useState(0);
 
-	return <div>{props.anecdotes[selected]}</div>;
+	const clicNext = () => {
+		setSelected(anecaleatoria(0, anecdotes.length));
+	};
+
+	const clicVotar = () => {
+		if (!votos[selected]) {
+			votos[selected] = 0;
+		}
+		votos[selected] = votos[selected] + 1;
+		setVoto(votos);
+		setCont(cont + 1);
+	};
+
+	function anecaleatoria(min, max) {
+		return Math.floor(Math.random() * (max - min)) + min;
+	}
+
+	return (
+		<div>
+			<p>{props.anecdotes[selected]}</p>
+			<p>has {votos[selected]} votes</p>
+			<button onClick={clicVotar}>vote</button>
+			<button onClick={clicNext}>next anecdote</button>
+		</div>
+	);
 };
 
 const anecdotes = [
