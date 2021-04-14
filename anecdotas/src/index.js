@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-
+import './index.css';
 const App = props => {
 	const [ selected, setSelected ] = useState(0);
 	const [ votos, setVoto ] = useState([ 0 ]);
@@ -43,16 +43,20 @@ const App = props => {
 
 	return (
 		<div>
-			<h2>Anecdote of the day</h2>
-			<p>{props.anecdotes[selected]}</p>
-			<p>has {votos[selected]} votes</p>
-			<button onClick={clicVotar}>vote</button>
-			<button onClick={clicNext}>next anecdote</button>
+			<h2 className="titulo">Anecdote of the day</h2>
+			<p className="anecdotas">{props.anecdotes[selected]}</p>
+			<p className="votos">has {votos[selected]} votes</p>
+			<button className="botones" onClick={clicVotar}>
+				vote
+			</button>
+			<button className="botones" onClick={clicNext}>
+				next anecdote
+			</button>
 			{masvotado >= 0 ? (
 				<div>
-					<h2>Anecdote with most votes</h2>
-					{props.anecdotes[masvotado]}
-					<p>has {votos[masvotado]} votes</p>
+					<h2 className="titulo">Anecdote with most votes</h2>
+					<p className="anecdotas">{props.anecdotes[masvotado]}</p>
+					<p className="votos">has {votos[masvotado]} votes</p>
 				</div>
 			) : (
 				<p />
