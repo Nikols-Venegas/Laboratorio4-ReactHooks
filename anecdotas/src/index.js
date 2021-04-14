@@ -5,10 +5,26 @@ const App = props => {
 	const [ selected, setSelected ] = useState(0);
 	const [ votos, setVoto ] = useState([ 0 ]);
 	const [ cont, setCont ] = useState(0);
+	const [ masvotado, setMasVotado ] = useState(-1);
 
 	const clicNext = () => {
 		setSelected(anecaleatoria(0, anecdotes.length));
+		calcMasVotado();
 	};
+
+	function calcMasVotado() {
+		let ind = 0;
+		let mvotos = 0;
+		while (ind < anecdotes.length) {
+			if (votos[ind]) {
+				if (votos[ind] > mvotos) {
+					mvotos = votos[ind];
+					setMasVotado(ind);
+				}
+			}
+			ind++;
+		}
+	}
 
 	const clicVotar = () => {
 		if (!votos[selected]) {
@@ -17,6 +33,8 @@ const App = props => {
 		votos[selected] = votos[selected] + 1;
 		setVoto(votos);
 		setCont(cont + 1);
+
+		calcMasVotado();
 	};
 
 	function anecaleatoria(min, max) {
@@ -25,10 +43,20 @@ const App = props => {
 
 	return (
 		<div>
+			<h2>Anecdote of the day</h2>
 			<p>{props.anecdotes[selected]}</p>
 			<p>has {votos[selected]} votes</p>
 			<button onClick={clicVotar}>vote</button>
 			<button onClick={clicNext}>next anecdote</button>
+			{masvotado >= 0 ? (
+				<div>
+					<h2>Anecdote with most votes</h2>
+					{props.anecdotes[masvotado]}
+					<p>has {votos[masvotado]} votes</p>
+				</div>
+			) : (
+				<p />
+			)}
 		</div>
 	);
 };
